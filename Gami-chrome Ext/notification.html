@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<link href="style/style.css" rel="stylesheet" type="text/css"> 
+		<script>
+			// We retrieve the new tweet from the background page.
+			var msg = chrome.extension.getBackgroundPage().lastMsg;
+		</script>
+	</head>
+	<body>
+		<div id="notification">
+			<div id="content">
+				<div id="tweet">
+					<script>document.write(msg.msg);</script>
+				</div>
+			</div>
+			<div style="clear:left;"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+{
+	"manifest_version": 2,
+
+	"name": "Tweets from node js server",
+	
+	"version": "1.0",
+	
+	"description": "try",
+	
+	"background": {
+    	"page": "background.html",
+   	    "persistent": false
+
+  	},	
+
+	"permissions": [
+		"notifications"
+	],
+
+	"browser_action": {
+		
+		"popup": "popup.html",
+		"default_popup": "popup.html"
+	}
+	
+}
