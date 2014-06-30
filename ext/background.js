@@ -32,7 +32,7 @@ data = JSON.parse(data);
 	  	else if (Notification.permission === "granted") 
 		  {
 		    // If it's okay let's create a notification
-		    var notification = new Notification(lastMsg.msg);
+		    var notification = new Notification(lastMsg.msg , {icon:  "img/10.png"}); 
 	        setTimeout(function(){ notification.close(); }, 5000);
 		  }
 
@@ -53,7 +53,7 @@ data = JSON.parse(data);
 		      // If the user is okay, let's create a notification
 		      if (permission === "granted") 
 		      {
-		        var notification = new Notification(lastMsg.url,lastMsg.msg,"");
+		    	var notification = new Notification(lastMsg.msg , {icon:  "img/10.png"}); 
 				setTimeout(function(){ notification.close(); }, 5000);	    	  }
 		    });
   	
