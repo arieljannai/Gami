@@ -31,8 +31,8 @@ data = JSON.parse(data);
 	  	else if (Notification.permission === "granted") 
 		  {
 		    // If it's okay let's create a notification
-		    var notification = new Notification(lastMsg.msg);
-	        //setTimeout(function(){ notification.cancel(); tweet = null; }, NOTIFICATION_DISPLAY_TIME);
+		    var notification = new Notification(lastMsg.msg + "\n url : " + lastMsg.url);
+	        setTimeout(function(){ notification.close(); }, 5000);
 		  }
 
 		  // Otherwise, we need to ask the user for permission
@@ -52,9 +52,8 @@ data = JSON.parse(data);
 		      // If the user is okay, let's create a notification
 		      if (permission === "granted") 
 		      {
-		        var notification = new Notification(lastMsg.msg);
-		        //setTimeout(function(){ notification.cancel(); tweet = null; }, NOTIFICATION_DISPLAY_TIME);
-	    	  }
+		        var notification = new Notification(lastMsg.url,lastMsg.msg,"");
+				setTimeout(function(){ notification.close(); }, 5000);	    	  }
 		    });
   	
 		}
