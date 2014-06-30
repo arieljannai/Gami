@@ -1,23 +1,16 @@
-var PORT = 3700;
+module.exports = function (app) {
+//var app = require('express');
+//var http = require('http');
+var io = require('socket.io')(app);
 
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-io.on('connection', function(socket){
-	io.emit('message', 	
-		JSON.stringify( 
-			{ 	
-				msg:"whats up?"
-			}
-		));
+/*io.on('connection', function (socket) {
   socket.on('new message', function(msg){
     	io.emit('message', msg);
   });
-});
+});*/
 
-http.listen(PORT, function(){
-  console.log('listening on *:3700');
-});
-
-//socket.emit('chat message', $('#m').val());
+return function push (msg) {
+	console.log('here - ' + msg);
+	io.emit('message', msg);
+};
+};

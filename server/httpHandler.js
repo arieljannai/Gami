@@ -1,3 +1,7 @@
+module.exports = function (app) {
+
+var notification = require('../ext/index')(app);
+
 var mongo = require('mongodb');
  
 var Server = mongo.Server,
@@ -18,14 +22,34 @@ db.open(function(err, db) {
     }
 });
 
-exports.getHttpReq = function(req, res) {
+/*exports.getHttpReq = function(req, res) {
 	req.on('data', function (chunk) {
+		console.log("yaniv");
 		db.collection('userGamification', function (err, collection) {
 			var js = JSON.parse(chunk);
         	collection.update({"userName": js.name},{$inc: {"totalPoints": js.points}},{upsert:true});
+        	// call push notification
+        	notification.push("yaniv!!! :)))");
         	if (err)
         		{console.log("error!! " + err);}
         });	
     });
     res.send(200,'good');
+};*/
+
+return function (req, res) {
+	req.on('data', function (chunk) {
+		console.log("yaniv");
+		db.collection('userGamification', function (err, collection) {
+			var js = JSON.parse(chunk);
+        	collection.update({"userName": js.name},{$inc: {"totalPoints": js.points}},{upsert:true});
+        	// call push notification
+        	var text = '{ "msg" : "Yey! You got ' + js.points + ' points!!"}';
+        	notification(text);
+        	if (err)
+        		{console.log("error!! " + err);}
+        });	
+    });
+    res.send(200,'good');
+};
 };

@@ -1,11 +1,15 @@
 var server = require('express');
 var app = server();
-var httpHandler = require('./httpHandler');
+var http = require('http');
+var httpServer = http.createServer(app);
+
+var httpHandler = require('./httpHandler')(httpServer);
+//var notification = require('../ext/index')(app);
 var bodyParser = require('body-Parser');
 
 app.use(bodyParser.json());
 
-app.post('/', httpHandler.getHttpReq);
+app.post('/', httpHandler);
 
-app.listen(3000);
-console.log('server started on port 3000');
+httpServer.listen(3700);
+console.log('server started on port 3700');

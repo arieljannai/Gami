@@ -10,6 +10,7 @@ var lastMsg;
 // Listening to the 'message' event, it will be fired
 // each time our Node server send us a new tweet.
 socket.on('message', function(data){
+	console.log('shahaf!!');
 data = JSON.parse(data);
 	if(data.msg) {
            lastMsg = data;
@@ -31,7 +32,7 @@ data = JSON.parse(data);
 	  	else if (Notification.permission === "granted") 
 		  {
 		    // If it's okay let's create a notification
-		    var notification = new Notification(lastMsg.msg + "\n url : " + lastMsg.url);
+		    var notification = new Notification(lastMsg.msg);
 	        setTimeout(function(){ notification.close(); }, 5000);
 		  }
 
