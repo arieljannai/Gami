@@ -10,11 +10,37 @@
 	<body>
 	<div ng-controller="Controller">
 		<form class="form">
-		project : <input type="text" id="http" ng-model="rule.http">
-		points: <input type="text" id="pt" ng-model="rule.pts">
-		rule: <input type="text" id="rule" ng-model="rule.rule">
-		
+		<table>
+			<tr>
+				<td>
+			<b> project :</b> 
+				</td>
+				<td>
+			<input type="text" id="http" ng-model="rule.http">
+				</td>
+			</tr>
+			<tr>
+				<td>
+			<b> points: </b>
+				</td>
+				<td>
+			<input type="text" id="pt" ng-model="rule.pts">
+				</td>
+			</tr>
+			<tr>
+				<td>
+			<b> rule: </b>
+				</td>
+				<td>
+			<input type="text" id="rule" ng-model="rule.rule">
+				</td>
+			</tr>
+			<tr>
+				<td row-spane='2' style="text-align:'center'">
 		<button ng-click="update(rule)">SAVE</button>
+				</td>
+			</tr>
+		</table>
 		</form> 
 
 		<div>
