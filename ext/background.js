@@ -10,7 +10,6 @@ var lastMsg;
 // Listening to the 'message' event, it will be fired
 // each time our Node server send us a new tweet.
 socket.on('message', function(data){
-	console.log('shahaf!!');
 data = JSON.parse(data);
 	if(data.msg) {
            lastMsg = data;
