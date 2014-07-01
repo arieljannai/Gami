@@ -1,0 +1,38 @@
+<!Doctype html>
+<html ng-app>
+	<head>
+		<script src="angular.js"></script>
+		<script>
+	  function Controller($scope) {
+	    $scope.rules = [];
+
+	    $scope.update = function(rule) {
+	      $scope.rules.push(angular.copy(rule));
+	    };
+
+	    $scope.send = function() {
+	      // send to db 
+	    };
+	  }
+	</script>
+	</head>
+	<body>
+	<div ng-controller="Controller">
+		<form>
+		project : <input type="text" id="http" ng-model="rule.http">
+		points: <input type="text" id="pt" ng-model="rule.pts">
+		rule: <input type="text" id="rule" ng-model="rule.rule">
+		
+		<button ng-click="update(rule)">SAVE</button>
+		</form> 
+
+		<div>
+			<ul id="rules">
+				<li ng-repeat="currRule in rules" value="{{currRule}}">{{"Proj: " + currRule.http +" -> " + currRule.rule +" -> "+ currRule.pts}}</li>
+			</ul>
+			<button ng-click="send()">Send</button>
+		</div>
+	</div>
+	
+	</body>
+</html>
