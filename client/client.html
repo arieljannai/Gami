@@ -1,24 +1,15 @@
 <!Doctype html>
 <html ng-app>
 	<head>
+		<title>Gamification</title>
 		<script src="angular.js"></script>
-		<script>
-	  function Controller($scope) {
-	    $scope.rules = [];
-
-	    $scope.update = function(rule) {
-	      $scope.rules.push(angular.copy(rule));
-	    };
-
-	    $scope.send = function() {
-	      // send to db 
-	    };
-	  }
-	</script>
+		<script src="client.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<h1 id="header"> Gami! </h1>
 	</head>
 	<body>
 	<div ng-controller="Controller">
-		<form>
+		<form class="form">
 		project : <input type="text" id="http" ng-model="rule.http">
 		points: <input type="text" id="pt" ng-model="rule.pts">
 		rule: <input type="text" id="rule" ng-model="rule.rule">
