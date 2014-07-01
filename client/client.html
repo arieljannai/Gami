@@ -2,10 +2,33 @@
 <html ng-app>
 	<head>
 		<title>Gamification</title>
-		<script src="angular.js"></script>
-		<script src="client.js"></script>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="/static/angular.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="/static/style.css">
 		<h1 id="header"> Gami! </h1>
+		<script type="text/javascript">
+		
+		function Controller($scope,$http){
+	    $scope.rules = [];
+
+	    $scope.update = function(rule) {
+	      $scope.rules.push(angular.copy(rule));
+	    };
+
+	    $scope.send = function() {
+			$http({
+	            url: '/send',
+	            method: "POST",
+	            data: $scope.rules,
+	            headers: {'Content-Type': 'application/JSON'}
+	        	}).success(function (data, status, headers, config) {
+	                $scope.persons = data; // assign  $scope.persons here as promise is resolved here 
+	            }).error(function (data, status, headers, config) {
+	                $scope.status = status;
+            });
+	    };
+	  }
+	  </script>
 	</head>
 	<body>
 	<div ng-controller="Controller">
@@ -24,7 +47,7 @@
 			<b> points: </b>
 				</td>
 				<td>
-			<input type="text" id="pt" ng-model="rule.pts">
+			<input type="text" id="pt" ng-model="rule.points">
 				</td>
 			</tr>
 			<tr>
@@ -45,9 +68,9 @@
 
 		<div>
 			<ul id="rules">
-				<li ng-repeat="currRule in rules" value="{{currRule}}">{{"Proj: " + currRule.http +" -> " + currRule.rule +" -> "+ currRule.pts}}</li>
+				<li ng-repeat="currRule in rules" value="{{currRule}}">{{"Proj: " + currRule.http +" -> " + currRule.rule +" -> "+ currRule.points}}</li>
 			</ul>
-			<button ng-click="send()">Send</button>
+			<button method="post" action="/send" ng-click="send()">Send</button>
 		</div>
 	</div>
 	
